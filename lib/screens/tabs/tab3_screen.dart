@@ -17,7 +17,7 @@ class _Tab3ScreenState extends State<Tab3Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WinZen • Ambient'),
+        title: const Text('Win • Ambient'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),

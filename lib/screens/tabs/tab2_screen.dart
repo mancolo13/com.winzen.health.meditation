@@ -14,7 +14,7 @@ class Tab2Screen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WinZen • Sleep'),
+        title: const Text('Win • Sleep'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
