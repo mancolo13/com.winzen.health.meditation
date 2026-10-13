@@ -9,7 +9,9 @@ class Tab3Screen extends StatefulWidget {
 }
 
 class _Tab3ScreenState extends State<Tab3Screen> {
-  int _counter = 0;
+  double _rainVol = 0.7;
+  double _fireVol = 0.4;
+  double _wavesVol = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -23,109 +25,47 @@ class _Tab3ScreenState extends State<Tab3Screen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
                 color: AppTheme.surfaceColor,
-                borderRadius: BorderRadius.circular(24.0),
-                border: Border.all(
-                  color: AppTheme.primaryColor.withValues(alpha: 0.3),
-                  width: 1.5,
-                ),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: AppTheme.primaryColor.withValues(alpha: 0.3)),
               ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.headphones,
-                      size: 48,
-                      color: AppTheme.primaryColor,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Tracks',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    'qty',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white.withValues(alpha: 0.7),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() => _counter++);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Play выполнено! (Счетчик: \$$_counter)'),
-                          duration: const Duration(seconds: 1),
-                          backgroundColor: AppTheme.primaryColor,
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.bolt, color: Colors.black),
-                    label: const Text('Play'),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
-                    ),
-                  ),
-                ],
-              ),
+              child: const Text('Микшер звуков природы', style: TextStyle(color: AppTheme.primaryColor, fontWeight: FontWeight.bold, fontSize: 16)),
             ),
             const SizedBox(height: 20),
-            Container(
-              padding: const EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                color: AppTheme.cardColor,
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Активность',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Всего взаимодействий:',
-                        style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
-                      ),
-                      Text(
-                        '\$$_counter',
-                        style: const TextStyle(
-                          color: AppTheme.secondaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            _buildSlider('Летний дождь за окном', _rainVol, Icons.water_drop_outlined, (v) => setState(() => _rainVol = v)),
+            _buildSlider('Треск вечернего костра', _fireVol, Icons.local_fire_department_outlined, (v) => setState(() => _fireVol = v)),
+            _buildSlider('Океанский прибой', _wavesVol, Icons.waves, (v) => setState(() => _wavesVol = v)),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSlider(String title, double val, IconData icon, ValueChanged<double> onChanged) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(color: AppTheme.cardColor, borderRadius: BorderRadius.circular(14)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, color: AppTheme.primaryColor, size: 20),
+              const SizedBox(width: 10),
+              Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
+            ],
+          ),
+          Slider(
+            value: val,
+            min: 0,
+            max: 1,
+            activeColor: AppTheme.primaryColor,
+            onChanged: onChanged,
+          ),
+        ],
       ),
     );
   }

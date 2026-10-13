@@ -1,4 +1,4 @@
-package com.arenasport.football.matchtracker
+package com.winzen.health.meditation
 
 import android.os.Build
 import android.os.Bundle
