@@ -7,9 +7,9 @@ class Tab2Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stories = [
-      {'title': 'Бамбуковый лес Киото', 'time': '25 мин', 'author': 'Шепот ветра'},
-      {'title': 'Ночной поезд в Альпах', 'time': '35 мин', 'author': 'Мягкий перестук колес'},
-      {'title': 'Звездное небо в пустыне', 'time': '30 мин', 'author': 'Глубокая тишина'},
+      {'title': 'Kyoto Bamboo Forest', 'time': '25 min', 'author': 'Whispering breeze'},
+      {'title': 'Alpine Night Train', 'time': '35 min', 'author': 'Gentle rhythmic rail click'},
+      {'title': 'Desert Starlit Sky', 'time': '30 min', 'author': 'Deep tranquility'},
     ];
 
     return Scaffold(
@@ -31,9 +31,9 @@ class Tab2Screen extends StatelessWidget {
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Сказки и звуки для глубокого сна', style: TextStyle(color: AppTheme.primaryColor, fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text('Sleep Stories & Night Sounds', style: TextStyle(color: AppTheme.primaryColor, fontWeight: FontWeight.bold, fontSize: 16)),
                   SizedBox(height: 4),
-                  Text('Погружение в фазу медленного сна за 15 минут', style: TextStyle(color: Colors.white70, fontSize: 12)),
+                  Text('Ease into deep sleep in under 15 minutes', style: TextStyle(color: Colors.white70, fontSize: 12)),
                 ],
               ),
             ),
